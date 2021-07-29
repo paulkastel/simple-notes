@@ -15,6 +15,7 @@ class AddNoteCubit extends Cubit<AddNoteState> {
     emit(AddNoteLoading());
     try {
       await _daoNotes.create(Note(content, DateTime.now()));
+      emit(AddNoteSuccess());
     } on Exception catch (ex) {
       emit(AddNoteError(ex));
     }

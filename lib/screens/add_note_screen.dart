@@ -25,6 +25,7 @@ class AddNoteScreen extends StatefulWidget {
 }
 
 class _AddNoteScreenState extends State<AddNoteScreen> {
+  final GlobalKey<FormState> _formAddNoteKey = GlobalKey();
   final _noteEditingController = TextEditingController();
 
   @override
@@ -42,12 +43,23 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Form(
-            child: TextFormField(
-              minLines: 3,
-              maxLines: 10,
-              keyboardType: TextInputType.multiline,
-              controller: _noteEditingController,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Form(
+              key: _formAddNoteKey,
+              child: TextFormField(
+                minLines: 3,
+                maxLines: 10,
+                keyboardType: TextInputType.multiline,
+                controller: _noteEditingController,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Field must not be empty!';
+                  } else {
+                    return null;
+                  }
+                },
+              ),
             ),
           ),
           BlocConsumer<AddNoteCubit, AddNoteState>(
@@ -68,7 +80,10 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
               }
               return ElevatedButton(
                 onPressed: () {
-                  context.read<AddNoteCubit>().saveNote(_noteEditingController.text);
+                  if (_formAddNoteKey.currentState!.validate()) {
+                    _formAddNoteKey.currentState!.save();
+                    context.read<AddNoteCubit>().saveNote(_noteEditingController.text);
+                  }
                 },
                 child: const Text('Save'),
               );
