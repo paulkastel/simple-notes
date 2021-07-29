@@ -19,19 +19,40 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=2.2.2"
 
 dependencies:
-  flutter:
-    sdk: flutter
-
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+  #package that helps to implement value based equality
+  equatable: ^2.0.3
+
+  flutter:
+    sdk: flutter
+
+  #Flutter Widgets that make it easy to implement the BLoC (Business Logic Component) design pattern
+  flutter_bloc: ^7.0.1
+
+  #string-based path manipulation library
+  path: ^1.8.0
+
+  #plugin for getting commonly used locations on host platform file systems
+  path_provider: ^2.0.2
+
+  #Flutter plugin for SQLite, a self-contained, high-reliability, embedded, SQL database engine.
+  sqflite: ^2.0.0+3
+
 dev_dependencies:
+  #testing library which makes it easy to test blocs.
+  bloc_test: ^8.0.2
+
   flutter_test:
     sdk: flutter
+
+  #mock library which simplifies mocking with null safety support
+  mocktail: ^0.1.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
