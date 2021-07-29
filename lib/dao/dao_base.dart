@@ -1,9 +1,9 @@
 abstract class IDaoBase<T> {
   Future<int> create(T entity);
 
-  Future<T?> read(String id);
+  Future<T?> read(int id);
 
   Future<int> update(T entity);
 
-  Future<int> delete(String id);
+  Future<int> delete(int id);
 }

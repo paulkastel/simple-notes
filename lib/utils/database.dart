@@ -30,10 +30,8 @@ class AppDatabase {
 
   Future<void> _onCreate(Database db, int version) async {
     log('Database init started!', name: _tag);
-    await db.execute('SELECT 1');
-    await db.execute('PRAGMA foreign_keys = ON');
     await db.execute(
-      'CREATE TABLE IF NOT EXISTS Notes (id INTEGER AUTOINCREMENT PRIMARY KEY NOT NULL, content TEXT NOT NULL, creationdate INTEGER NOT NULL)',
+      'CREATE TABLE IF NOT EXISTS Notes (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, content TEXT NOT NULL, creationdate INTEGER NOT NULL)',
     );
     log('Database init finished!', name: _tag);
   }
