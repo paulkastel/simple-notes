@@ -14,10 +14,23 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> getNotes() async {
     emit(HomeLoading());
     try {
-      final notes = await _daoNotes.getAllNotes();
-      emit(HomeSuccess(notes));
+      await _getNotesFromDb();
     } on Exception catch (ex) {
       emit(HomeError(ex));
     }
+  }
+
+  Future<void> deleteNote(Note note) async {
+    try {
+      await _daoNotes.delete(note.id!);
+      await _getNotesFromDb();
+    } on Exception catch (ex) {
+      emit(HomeError(ex));
+    }
+  }
+
+  Future<void> _getNotesFromDb() async {
+    final notes = await _daoNotes.getAllNotes();
+    emit(HomeSuccess(notes.reversed.toList()));
   }
 }
