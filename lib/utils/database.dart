@@ -31,7 +31,7 @@ class AppDatabase {
   Future<void> _onCreate(Database db, int version) async {
     log('Database init started!', name: _tag);
     await db.execute(
-      'CREATE TABLE IF NOT EXISTS Notes (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, content TEXT NOT NULL, creationdate INTEGER NOT NULL)',
+      'CREATE TABLE IF NOT EXISTS Notes (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, content TEXT NOT NULL, creationdate TEXT NOT NULL)',
     );
     log('Database init finished!', name: _tag);
   }
