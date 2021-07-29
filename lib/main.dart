@@ -16,7 +16,8 @@ class SimpleNotesApp extends StatelessWidget {
     return MaterialApp(
       title: 'Simple notes',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
+        accentColor: Colors.pink,
       ),
       onGenerateRoute: (settings) {
         switch (settings.name) {
