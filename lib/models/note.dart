@@ -6,7 +6,7 @@ class Note extends Equatable {
   Note.fromJson(Map<String, dynamic> json)
       : _id = json['id'],
         content = json['content'],
-        creationDate = json['creationdate'];
+        creationDate = DateTime.parse(json['creationdate']);
 
   final String content;
   final DateTime creationDate;
@@ -21,6 +21,8 @@ class Note extends Equatable {
     return content;
   }
 
+  int? get id => _id;
+
   static List<Note> listFromJson(List<Map<String, dynamic>>? json) {
     return json == null ? <Note>[] : json.map((c) => Note.fromJson(c)).toList();
   }
@@ -29,7 +31,7 @@ class Note extends Equatable {
     return {
       'id': _id,
       'content': content,
-      'creationdate': creationDate,
+      'creationdate': creationDate.toIso8601String(),
     };
   }
 }
